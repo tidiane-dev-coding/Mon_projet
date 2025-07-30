@@ -122,13 +122,25 @@
     }
     function ajouterAuPanier(produit) {
         let panier = getPanier();
-        panier.push(produit);
+        // Vérifier si le produit existe déjà (même nom et image)
+        let idx = panier.findIndex(p => p.nom === produit.nom && p.image === produit.image);
+        if (idx !== -1) {
+            panier[idx].quantite = (panier[idx].quantite || 1) + 1;
+        } else {
+            produit.quantite = 1;
+            panier.push(produit);
+        }
         setPanier(panier);
         alert('Produit ajouté au panier !');
     }
     function majNbPanier() {
         var nb = document.getElementById('nb-panier');
-        if(nb) nb.textContent = getPanier().length;
+        if(nb) {
+            // Compter le total des quantités
+            let panier = getPanier();
+            let total = panier.reduce((acc, p) => acc + (p.quantite || 1), 0);
+            nb.textContent = total;
+        }
     }
 
     // --- Affichage des produits avec filtre et recherche ---
@@ -204,12 +216,17 @@ window.addEventListener('DOMContentLoaded', function() {
             }
             let total = 0;
             liste.innerHTML = panier.map((p, idx) => {
-                total += p.prix;
+                total += (p.prix * (p.quantite || 1));
                 return `<div class="panier-item">
                     <img src="${p.image}" alt="${p.nom}">
                     <div class="panier-item-details">
                         <span class="panier-item-nom">${p.nom}</span>
                         <span class="panier-item-prix">${p.prix.toLocaleString()} GNF</span>
+                        <div style="margin-top:0.5rem;display:flex;align-items:center;gap:0.5rem;">
+                            <button class="moins-quantite" data-idx="${idx}" style="padding:0.2rem 0.6rem;">−</button>
+                            <span class="quantite-panier" style="font-weight:bold;">${p.quantite || 1}</span>
+                            <button class="plus-quantite" data-idx="${idx}" style="padding:0.2rem 0.6rem;">+</button>
+                        </div>
                     </div>
                     <div class="panier-item-actions">
                         <button class="supprimer-panier" data-idx="${idx}">Supprimer</button>
@@ -222,6 +239,28 @@ window.addEventListener('DOMContentLoaded', function() {
                 btn.onclick = function() {
                     let panier = getPanier();
                     panier.splice(btn.getAttribute('data-idx'), 1);
+                    setPanier(panier);
+                    afficherPanier();
+                };
+            });
+            // Ajout des listeners pour + et -
+            document.querySelectorAll('.plus-quantite').forEach(btn => {
+                btn.onclick = function() {
+                    let panier = getPanier();
+                    let idx = parseInt(btn.getAttribute('data-idx'));
+                    panier[idx].quantite = (panier[idx].quantite || 1) + 1;
+                    setPanier(panier);
+                    afficherPanier();
+                };
+            });
+            document.querySelectorAll('.moins-quantite').forEach(btn => {
+                btn.onclick = function() {
+                    let panier = getPanier();
+                    let idx = parseInt(btn.getAttribute('data-idx'));
+                    panier[idx].quantite = (panier[idx].quantite || 1) - 1;
+                    if (panier[idx].quantite <= 0) {
+                        panier.splice(idx, 1);
+                    }
                     setPanier(panier);
                     afficherPanier();
                 };
