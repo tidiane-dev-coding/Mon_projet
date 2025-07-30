@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produits - Guinée Style Market</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <h1 class="logo">Guinée Style Market</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="nav-link">Accueil</a></li>
+                    <li><a href="categorie.html" class="nav-link">Catégories</a></li>
+                    <li><a href="produits.html" class="nav-link active">Produits</a></li>
+                    <li><a href="panier.html" class="nav-link">Panier</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="produits-page">
+            <div class="produits-header-bar">
+                <h2 id="titre-categorie">Produits</h2>
+                <div class="outils-produits">
+                    <input type="text" id="recherche-produit" placeholder="Rechercher un produit...">
+                    <select id="filtre-produit">
+                        <option value="">Tous</option>
+                        <option value="chaussures">Chaussures</option>
+                        <option value="smartphones">Smartphones</option>
+                        <option value="montres">Montres</option>
+                        <option value="vetements-femme">Vêtements Femme</option>
+                        <option value="vetements-homme">Vêtements Homme</option>
+                        <option value="accessoires">Accessoires</option>
+                        <option value="sacs-maroquinerie">Sacs & Maroquinerie</option>
+                        <option value="bijoux">Bijoux</option>
+                        <option value="voiture">Voiture</option>
+                        <option value="beaute-soins">Beauté & Soins</option>
+                    </select>
+                    <span id="panier-indicateur">🛒 <span id="nb-panier">0</span></span>
+                </div>
+            </div>
+            <div class="produits-list">
+                <!-- Les produits seront affichés ici dynamiquement -->
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Guinée Style Market. Amadou Tidiane Bah.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

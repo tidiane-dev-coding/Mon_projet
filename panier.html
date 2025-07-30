@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panier - Guinée Style Market</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <h1 class="logo">Guinée Style Market</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="nav-link">Accueil</a></li>
+                    <li><a href="categorie.html" class="nav-link">Catégories</a></li>
+                    <li><a href="produits.html" class="nav-link">Produits</a></li>
+                    <li><a href="panier.html" class="nav-link active">Panier</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="panier-page">
+            <h2>Votre Panier</h2>
+            <div class="panier-list">
+                <!-- Les articles du panier seront affichés ici dynamiquement -->
+            </div>
+            <div class="panier-total">
+                Total : <span id="total-panier">0 GNF</span>
+            </div>
+            <button id="vider-panier" class="cta-btn" style="margin-top:1.5rem;">Vider le panier</button>
+        <div class="panier-actions" style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;">
+            <button id="commander-panier" class="cta-btn">Commander</button>
+            <button id="retour-produits" class="cta-btn">Retour aux produits</button>
+            <button id="retour-accueil" class="cta-btn">Accueil</button>
+        </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Guinée Style Market. Amadou Tidiane Bah.</p>
+    </footer>
+    <!-- Les actions des boutons sont gérées dans script.js -->
+    <script src="script.js"></script>
+</body>
+</html>
