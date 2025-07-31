@@ -302,3 +302,6 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 });
 })();
+//Pour charger l'année en cours directement et dynamique
+const date=document.querySelector("#année")
+date.textContent=new data().getFullYear()
